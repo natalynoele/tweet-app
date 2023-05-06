@@ -121,7 +121,7 @@ export const TweetCard = () => {
             fontWeight: 600,
           }}
         >
-          FOLLOW
+          Follow
         </Button>
       </CardContent>
     </Card>
