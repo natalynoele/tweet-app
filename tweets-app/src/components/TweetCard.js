@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import {
   Card,
   Avatar,
@@ -10,18 +10,42 @@ import {
 } from "@mui/material";
 import logo from "../assets/images/logo.svg";
 import tweetLogo from "../assets/images/tweets.svg";
+import { useDispatch } from "react-redux";
+import { patchUser } from "../redux/users/operations";
 
-export const TweetCard = () => {
-  const [expanded, setExpanded] = React.useState(false);
+export const TweetCard = ({ user }) => {
+  const [updateUser, setUpdateUser] = useState(user);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const { tweets, followers, avatar } = updateUser;
+  const dispatch = useDispatch();
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const addFollower = () => {
+    setUpdateUser((prevState) => ({
+      ...prevState,
+      followers: parseInt(prevState.followers) + 1,
+    }));
+  }
+
+  const subtractFollower= () => {
+     setUpdateUser((prevState) => ({
+       ...prevState,
+       followers: parseInt(prevState.followers) - 1,
+     }));
+  }
+
+  const handleToggle = () => {
+    
+    setIsFollowing(!isFollowing);
+    isFollowing ? addFollower() : subtractFollower();  
+    dispatch(patchUser(updateUser));
+    };
+
 
   return (
     <Card
       sx={{
         maxWidth: "380px",
+        width: "100%",
         position: "relative",
         background:
           "linear-gradient(114.99deg, #471CA9 -0.99%, #5736A3 54.28%, #4B2A99 78.99%)",
@@ -34,7 +58,8 @@ export const TweetCard = () => {
           height: "42%",
           p: "20px",
           borderBottom: "solid 8px #EBD8FF",
-          boxShadow: '0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06), inset 0px -1.71846px 3.43693px #AE7BE3, inset 0px 3.43693px 2.5777px #FBF8FF',
+          boxShadow:
+            "0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06), inset 0px -1.71846px 3.43693px #AE7BE3, inset 0px 3.43693px 2.5777px #FBF8FF",
         }}
       >
         <CardMedia
@@ -52,7 +77,7 @@ export const TweetCard = () => {
       </Box>
       <Avatar
         alt="user avatar"
-        src="/static/images/avatar/1.jpg"
+        src={avatar}
         sx={{
           width: 80,
           height: 80,
@@ -70,6 +95,7 @@ export const TweetCard = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          textAlign: "center",
           pt: "62px",
         }}
       >
@@ -79,8 +105,6 @@ export const TweetCard = () => {
           component="p"
           sx={{
             mb: "16px",
-            lineHeight: 1.2,
-            textAlign: "center",
             fontFamily: "Montserrat",
             fontWeight: 500,
             fontSize: "20px",
@@ -88,40 +112,40 @@ export const TweetCard = () => {
             color: "#EBD8FF",
           }}
         >
-          Tweets
+          {tweets}Tweets
         </Typography>
         <Typography
           gutterBottom
           variant="h5"
           component="p"
           sx={{
-            mb: '26px',
-            textAlign: "center",
+            mb: "26px",
             fontFamily: "Montserrat",
             fontWeight: 500,
             fontSize: "20px",
-            lineHeight: 1.2,
             textTransform: "uppercase",
             color: "#EBD8FF",
           }}
         >
-          Followers
+          {followers} Followers
         </Typography>
         <Button
           variant="contained"
+          size="large"
+          onClick={handleToggle}
           sx={{
-            pr: "28px",
-            pl: '28px',
-            pt: '14px',
-            pb: '14px',
-            borderRadius: '10px',
+            padding: "14px 39px",
+            borderRadius: "10px",
             backgroundColor: "#EBD8FF",
             boxShadow: "0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25)",
-            fontSize: '18px',
+            fontFamily: "Montserrat",
+            fontSize: "18px",
             fontWeight: 600,
+            textTransform: "uppercase",
+            lineHeight: "unset",
           }}
         >
-          Follow
+          FOLLOW
         </Button>
       </CardContent>
     </Card>
