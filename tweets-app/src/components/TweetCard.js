@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Card,
   Avatar,
@@ -14,48 +13,49 @@ import { useDispatch } from "react-redux";
 import { patchUser } from "../redux/users/operations";
 
 export const TweetCard = ({ user }) => {
-  const [updateUser, setUpdateUser] = useState(user);
-  const [isFollowing, setIsFollowing] = useState(false);
-  const { tweets, followers, avatar } = updateUser;
+  const { tweets, followers, avatar, isFollowing } = user;
+  const text = isFollowing ? "following" : "follow";
+  const bgColor = isFollowing ? "#5CD3A8" : "#EBD8FF";
+
   const dispatch = useDispatch();
 
-  const addFollower = () => {
-    setUpdateUser((prevState) => ({
-      ...prevState,
-      followers: parseInt(prevState.followers) + 1,
-    }));
-  }
+  const addFollower = (us) => {
+    return {
+      ...us,
+      followers: us.followers - 1,
+    };
+  };
 
-  const subtractFollower= () => {
-     setUpdateUser((prevState) => ({
-       ...prevState,
-       followers: parseInt(prevState.followers) - 1,
-     }));
-  }
+  const subtractFollower = (us) => {
+    return {
+      ...us,
+      followers: us.followers + 1,
+    };
+  };
 
   const handleToggle = () => {
-    
-    setIsFollowing(!isFollowing);
-    isFollowing ? addFollower() : subtractFollower();  
+    const updateUser = isFollowing ? addFollower(user) : subtractFollower(user);
     dispatch(patchUser(updateUser));
-    };
+  };
 
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   return (
     <Card
       sx={{
-        maxWidth: "380px",
-        width: "100%",
+        width: '100%',
+       
         position: "relative",
-        background:
-          "linear-gradient(114.99deg, #471CA9 -0.99%, #5736A3 54.28%, #4B2A99 78.99%)",
+        background: `linear-gradient(114.99deg, #471CA9 -0.99%, #5736A3 54.28%, #4B2A99 78.99%)`,
         boxShadow: " -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23)",
         borderRadius: "20px",
       }}
     >
       <Box
         sx={{
-          height: "42%",
+          height: "32%",
           p: "20px",
           borderBottom: "solid 8px #EBD8FF",
           boxShadow:
@@ -84,9 +84,10 @@ export const TweetCard = ({ user }) => {
           position: "absolute",
           top: "50%",
           left: "50%",
-          marginTop: "-40px",
+          marginTop: "-72px",
           marginLeft: "-60px",
           border: "solid 8px #EBD8FF",
+          backgroundColor: "#EBD8FF",
         }}
       />
       <CardContent
@@ -105,14 +106,13 @@ export const TweetCard = ({ user }) => {
           component="p"
           sx={{
             mb: "16px",
-            fontFamily: "Montserrat",
             fontWeight: 500,
-            fontSize: "20px",
+            fontSize: 20,
             textTransform: "uppercase",
             color: "#EBD8FF",
           }}
         >
-          {tweets}Tweets
+          {`${tweets} Tweets`}
         </Typography>
         <Typography
           gutterBottom
@@ -120,32 +120,34 @@ export const TweetCard = ({ user }) => {
           component="p"
           sx={{
             mb: "26px",
-            fontFamily: "Montserrat",
+            // fontFamily: "Montserrat",
             fontWeight: 500,
             fontSize: "20px",
             textTransform: "uppercase",
             color: "#EBD8FF",
           }}
         >
-          {followers} Followers
+          {`${numberWithCommas(followers)} Followers`}
         </Typography>
+
         <Button
           variant="contained"
           size="large"
-          onClick={handleToggle}
+          onClick={() => handleToggle()}
           sx={{
             padding: "14px 39px",
+            mb: "36px",
             borderRadius: "10px",
-            backgroundColor: "#EBD8FF",
+            backgroundColor: bgColor,
             boxShadow: "0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25)",
-            fontFamily: "Montserrat",
-            fontSize: "18px",
+            fontSize: 18,
             fontWeight: 600,
             textTransform: "uppercase",
             lineHeight: "unset",
+            color: "#000",
           }}
         >
-          FOLLOW
+          {text}
         </Button>
       </CardContent>
     </Card>
