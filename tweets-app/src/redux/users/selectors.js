@@ -4,4 +4,5 @@ export const selectError = state => state.users.error;
 export const selectFollowUsers = (state) => state.users.followUsers;
 export const selectTotal = state => state.users.total;
 export const selectPage = state => state.users.page;
+export const selectFilter = state => state.users.filter;
 

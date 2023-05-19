@@ -1,0 +1,19 @@
+/* .Tweets-container{
+
+} */
+.Tweets-container{
+display: flex;
+    flex-direction: column;
+    align-items: center;
+.Tweets-list {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 30px;
+  margin: 40px 0;
+}
+}
+
+/* .Tweets-item{} */

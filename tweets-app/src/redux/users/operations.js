@@ -36,12 +36,9 @@ export const fetchUsersPerPage = createAsyncThunk(
           "Something went wrong. Please try again"
         );
       }
-     
       if (unsubscribe) {
-        thunkAPI.dispatch(setPage({page}))
-        
-      
-      };
+        thunkAPI.dispatch(setPage({ page }));
+      }
       return { data: response.data, page, unsubscribe };
     } catch (error) {
       console.log(error);
@@ -52,10 +49,12 @@ export const fetchUsersPerPage = createAsyncThunk(
 
 export const patchUser = createAsyncThunk(
   "users/patchUser",
-  async (data, thunkAPI) => {
-      try {
-      const response = await axios.put(`${usersUrl}/${data.id}`, data);
-
+  async ({ updatedUser, following }, thunkAPI) => {
+    try {
+      const response = await axios.put(
+        `${usersUrl}/${updatedUser.id}`,
+        updatedUser
+      );
       if (response.status > 400) {
         return thunkAPI.rejectWithValue("Something went wrong");
       }
@@ -63,9 +62,11 @@ export const patchUser = createAsyncThunk(
       if (response.status > 400) {
         return thunkAPI.rejectWithValue("Something went wrong");
       }
-      return response.data;
+      return { user: response.data, isFollowing: following };
     } catch (error) {
-     return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
+

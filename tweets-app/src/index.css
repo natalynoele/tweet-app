@@ -10,12 +10,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 
 ul{
   margin: 0;
   padding: 0;
+}
+a {
+  color: inherit;
+  text-decoration: inherit; /* no underline */
 }

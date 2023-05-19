@@ -1,0 +1,17 @@
+.Layout-container {
+  padding: 20px 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 8px solid #5736a3;
+  background-color: #ebd8ff;
+}
+
+.Main-container {
+  margin: 20px;
+
+  img {
+    max-width: 700px;
+  }
+}
