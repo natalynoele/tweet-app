@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/tweet-app/static/css/main.4318bdc0.css",
+    "main.js": "/tweet-app/static/js/main.3401b8db.js",
+    "static/js/787.bd012218.chunk.js": "/tweet-app/static/js/787.bd012218.chunk.js",
+    "static/media/tweets.svg": "/tweet-app/static/media/tweets.23dcbc3cc8ccc9682f24b4acffb5efb2.svg",
+    "static/media/logo.svg": "/tweet-app/static/media/logo.e917114d7945c04c85a8946a331d28b6.svg",
+    "index.html": "/tweet-app/index.html",
+    "main.4318bdc0.css.map": "/tweet-app/static/css/main.4318bdc0.css.map",
+    "main.3401b8db.js.map": "/tweet-app/static/js/main.3401b8db.js.map",
+    "787.bd012218.chunk.js.map": "/tweet-app/static/js/787.bd012218.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4318bdc0.css",
+    "static/js/main.3401b8db.js"
+  ]
+}
