@@ -15,7 +15,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/tweets-app">
+        <BrowserRouter basename="/tweet-app">
           <App />
         </BrowserRouter>
       </PersistGate>
