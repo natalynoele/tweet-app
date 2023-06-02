@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import './Styles_AppBar.scss'
 
 export const AppBar = () => {
@@ -9,7 +9,7 @@ export const AppBar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? "lactive-class" : "AppBar-link"
+              isActive ? "active-class" : "AppBar-link"
             }
           >
             Home
@@ -19,7 +19,7 @@ export const AppBar = () => {
           <NavLink
             to="/tweets"
             className={({ isActive }) =>
-              isActive ? "lactive-class" : "AppBar-link"
+              isActive ? "active-class" : "AppBar-link"
             }
           >
             Tweets

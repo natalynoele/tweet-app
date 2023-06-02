@@ -2,6 +2,7 @@ import { TweetsList } from "../components/TweetList/TweetsList";
 import { GoBack } from "../components/GoBack/GoBack";
 import { Filter } from "../components/Filter/Filter";
 import "./Style_Tweets_page.scss";
+
 export const TweetsPage = () => {
   return (
     <>
