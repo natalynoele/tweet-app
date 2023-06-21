@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import './Styles_AppBar.scss'
 
 export const AppBar = () => {
+  const {PUBLIC_URL}= process.env
   return (
     <div className="AppBar-container">
       <ul className="AppBar-list">

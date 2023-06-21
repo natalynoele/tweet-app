@@ -43,14 +43,19 @@ export const TweetsList = () => {
 
   return (
     <div className="Tweets-container">
-      <ul className="Tweets-list">
-        {renderUsers.map((data) => (
-          <li className="Tweets-item" key={data.user.id}>
-            <Card user={data.user} isFollowing={data.isFollowing} />
-          </li>
-        ))}
-      </ul>
-      {users.length !== total && (
+      {renderUsers.length === 0 && <p>Sorry, but there are no posts. Please, try another filter</p>}
+
+      {renderUsers.length > 0 && (
+        <ul className="Tweets-list">
+          {renderUsers.map(data => (
+            <li className="Tweets-item" key={data.user.id}>
+              <Card user={data.user} isFollowing={data.isFollowing} />
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {renderUsers.length > 0 && users.length !== total && (
         <button onClick={handleLoadMore} className="Button Bt-Load">
           Load more
         </button>

@@ -5,8 +5,6 @@ import { Filter } from "../components/Filter/Filter";
 import "./Style_Tweets_page.scss";
 
 export const TweetsPage = () => {
-  const location = useLocation()
-  console.log('location :>> ', location.pathname);
   return (
     <>
       <div className="Wr-Block">
